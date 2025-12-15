@@ -16,8 +16,8 @@ for col in df.select_dtypes(include=['object']).columns:
 df[col] = encoder.fit_transform(df[col])
 
 
-# Tentukan fitur & target
-target = "Churn" # ganti jika berbeda
+# Tentukan target
+target = "Churn" # sesuaikan jika berbeda
 X = df.drop(columns=[target])
 y = df[target]
 
@@ -36,12 +36,12 @@ model.fit(X_train, y_train)
 # Evaluasi
 pred = model.predict(X_test)
 acc = accuracy_score(y_test, pred)
-print(f"Accuracy: {acc:.2f}")
+print("Accuracy:", round(acc, 2))
 
 
-# Simpan model & fitur
+# Simpan model
 joblib.dump(model, "decision_tree_model.pkl")
 joblib.dump(list(X.columns), "features.pkl")
 
 
-print("Model berhasil disimpan")
+print("Model tersimpan")
